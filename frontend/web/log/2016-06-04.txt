@@ -1,0 +1,2 @@
+2016-06-04 17:04:44 - <?xml version="1.0" encoding="UTF-8"?><MMP><MERCHANT><RESPONSE><url>https://payment.atomtech.in/paynetz/epi/fts</url><param name="ttype">NBFundTransfer</param><param name="tempTxnId">21711395</param><param name="token">ivGAvQn2Y6Sjnkcr55nUoo9%2B5T9YJY3CMpEnmKG5oCU%3D</param><param name="txnStage">1</param></RESPONSE></MERCHANT></MMP>
+2016-06-04 17:04:44 - https://payment.atomtech.in/paynetz/epi/fts?&ttype=NBFundTransfer&tempTxnId=21711395&token=ivGAvQn2Y6Sjnkcr55nUoo9%2B5T9YJY3CMpEnmKG5oCU%3D&txnStage=1

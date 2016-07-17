@@ -1,0 +1,147 @@
+.twitter-typeahead {
+	width:100%;
+}
+.typeahead, .tt-query, .tt-hint {
+	
+	outline: medium none;
+	padding: 5px 11px;
+}
+
+
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 6px;
+	padding: 8px 0;
+}
+.tt-suggestion {
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+.navbar-inverse {
+    background-color: #333333;
+    border-color: #080808;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+	min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+
+.input-sm {
+    border-radius: 3px;
+    font-size: 14px;
+    height: 34px;
+    line-height: 20px;
+    padding: 5px 10px;
+}
+.party-animal-events .event-highlight .time-date, .location {
+	font-size: 15px;
+    	line-height: 19px;
+}
+.form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.confirm_page .city {
+	padding-top:20px;
+}
+.confirm_page .page {
+	
+}
+.popover-title { display: none; }
+	.popover-content {
+		color:#000;
+		text-shadow:none;	
+	}
+	.popover {
+		width:150px;
+	}
+	.popover .form-group {
+		margin-bottom:0px;
+	}
+	.popover .radio {
+		margin-top: 3px;
+		margin-bottom: 3px;
+	}
+	.txt_datepicker {
+	   width: 120px;
+	   font-size: 12px;
+	   padding: 5px;
+	   height: 25px;
+	}
+	label {
+		font-size:12px;
+		font-weight:normal;
+	}
+	.tr_group {
+		display:none;
+	}
+	.txt_group {
+		width:45%;
+		float:left;
+		font-size: 12px;
+		padding: 5px;
+		height: 25px;
+		margin-right:3px;
+		margin-bottom:3px;
+	}
+	.btn-sm {
+		background: linear-gradient(to bottom, #09739b 0%,#0a9ad1 100%);
+	}
+	.error_club_full {
+		padding: 3px;
+		font-size:12px;
+		margin-bottom:2px;
+		border-radius:0px;
+		display:none;
+	}
+	.confirm_h2 {
+		text-align:center;
+		font-size: 25px;
+	}
+	.confirm_h4 {
+		text-align:center;
+	}
+	.confirm_h4 span{
+		font-size: 16px;
+	}
+	.confirm_h5 {
+		text-align:center;
+	}
+	.confirm_booking_person {
+		width:44%;
+		float:left;
+		margin-right:5px
+	}
+	.confirm_booking_person_mobile {
+		width:40%;
+		float:left;
+	}
+	.btn_book_now, .btn_book_now:hover{
+	  color: #fff !important;
+	  background-color: #286090;
+	  border-color: #204d74;
+	}
+	.no_data_found {
+		padding:10px;
+		display:none;
+	}
+	

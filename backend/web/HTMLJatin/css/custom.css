@@ -1,0 +1,89 @@
+
+.mycontainer {
+	width: 320px;
+	height: auto;
+	margin: 0 auto;
+	background: #000000;
+}
+.innercontainer {
+	margin: 12px;
+}
+.logo {padding: 10px 0; display: block;}
+.cf {clear: both;}
+.tabbuttons {
+	background: #c11803;
+	border-radius: 5px;
+	margin: 8px auto; 
+	padding: 6px;
+	width: 300px;
+}
+.tabbuttons a.booknow, .tabbuttons a.venue {
+	border-right: 1px solid #7e0609;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 8px 37px;	
+	 text-decoration: none;
+}
+.tabbuttons a.booknow:hover, .tabbuttons a.venue:hover {color: #4183ff;}
+.tabbuttons a.venue {
+	border-right: none;
+    font-size: 16px;
+    padding: 8px 20px;	
+}
+
+.details {
+	color: #c9c9c9;
+	font-size: 12px;
+	line-height: 20px;
+	text-align: justify;
+	border-bottom: 1px solid #5e5e5e;
+	padding-bottom: 8px;
+	position: relative;
+	height: 65px;
+	overflow: hidden;
+	transition: height 0.5s;
+	-webkit-transition: height 0.5s; /* Safari */
+}
+.d-height { height: 150px;transition: height 0.5s;-webkit-transition: height 0.5s; /* Safari */}
+.details a {
+	bottom: 0;
+    color: #d7210b;
+    font-size: 11px;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+	cursor: pointer;
+	
+}
+.details a:hover {text-decoration: none;}
+#areas-exp2 .thumbnail {
+	background-color: rgba(0, 0, 0, 0);
+    border: medium none;
+	margin-bottom: 0px;
+}
+.bootowl h2 {
+	font-size: 15px;
+	color: #ffffff;
+	text-align: center;
+	padding:6px 0;
+	font-weight: bold;
+	margin:0;
+}
+.bootowl .owl-controls {
+	display: none !important;
+}
+.contactdetails { border-top: 1px solid #5e5e5e; border-bottom: 1px solid #5e5e5e; margin-top: 5px; padding:3px 0;}
+.contactdetails span {font-size: 10px; color: #c9c9c9;}
+
+
+
+
+footer {font-size: 10px; color: #c9c9c9; text-align: center; padding: 7px 0;}
+
+
+
+
+@media (max-width: 768px) {
+	.mycontainer {width: 100%;}
+}

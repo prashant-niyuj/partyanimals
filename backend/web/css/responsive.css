@@ -1,0 +1,210 @@
+/* responsive css*/
+
+/* @media (max-width:1400px) */
+
+@media (max-width:1400px) {
+
+.search_wrap .search_box .field {
+    
+    background: url("../images/icon.png") no-repeat scroll 236px -7px / 16% auto #FFF;
+   
+}
+
+.search_wrap .search_box .field.club {
+    background: url("../images/icon.png") no-repeat scroll 236px -49px / 16% auto #FFF;
+}
+
+
+.search_wrap .search_box .field.event {
+    background: url("../images/icon.png") no-repeat scroll 236px -96px / 16% auto #FFF;
+}
+
+.banner_wrap {
+    width: 85%;
+}
+
+.banner_wrap .slider .search_icon .iconbx {
+    margin: 0px 16px 40px;
+}
+
+
+.banner_wrap .slider .arrow {
+    height: 24%;
+    margin-top: 12%;
+}
+
+.Events .heading {
+    width: 25.5%;
+}
+
+.Events .box_wrap {
+    width: 50%;
+}
+
+.Events .link {
+    width: 12.5%;
+}
+
+
+}
+
+
+/* @media (max-width:1366px) */
+
+@media (max-width:1366px) {
+
+.search_wrap .search_box .field {
+    width: 27%;
+}
+
+.search_wrap .search_box .field {
+    
+    background: url("../images/icon.png") no-repeat scroll 252px -8px / 16% auto #FFF;
+   
+}
+
+.search_wrap .search_box .field.club {
+    background: url("../images/icon.png") no-repeat scroll 246px -51px / 16% auto #FFF;
+}
+
+
+.search_wrap .search_box .field.event {
+    background: url("../images/icon.png") no-repeat scroll 252px -102px / 16% auto #FFF;
+}
+
+.banner_wrap {
+    width: 95%;
+}
+
+.banner_wrap .slider .search_icon .iconbx {
+    margin: 0px 16px 40px;
+}
+
+
+.banner_wrap .slider .arrow {
+    height: 28%;
+    margin-top: 8%;
+}
+
+.Events .heading {
+    width: 25.5%;
+}
+
+.Events .box_wrap {
+    width: 52%;
+}
+
+.Events .link {
+    width: 12.5%;
+}
+
+
+}
+
+
+/* @media (max-width:1330px) */
+@media (max-width:1330px) {
+
+.search_wrap .search_box .field {
+    
+    background: url("../images/icon.png") no-repeat scroll 242px -8px  / 16% auto #FFF;
+   
+}
+
+.search_wrap .search_box .field.club {
+    background: url("../images/icon.png") no-repeat scroll 236px -50px / 16% auto #FFF;
+}
+
+
+.search_wrap .search_box .field.event {
+    background: url("../images/icon.png") no-repeat scroll 242px -96px / 16% auto #FFF;
+}
+
+.search_wrap .search_box .field {
+    margin: 0px 4px;
+}
+
+.banner_wrap {
+    width: 95%;
+}
+
+.banner_wrap .slider .search_icon .iconbx {
+    margin: 0px 16px 40px;
+}
+
+
+.banner_wrap .slider .arrow {
+    height: 24%;
+    margin-top: 10%;
+}
+
+.Events .heading {
+    width: 27.5%;
+}
+
+.Events .box_wrap {
+    width: 54%;
+}
+
+.Events .link {
+    width: 13.5%;
+}
+
+}
+
+/* @media (max-width:1280px) */
+@media (max-width:1280px) {
+.Events .heading {
+    width: 28.5%;
+}
+
+.search_wrap .search_box .field.event {
+    background: url("../images/icon.png") no-repeat scroll 242px -96px / 16% auto #FFF;
+}
+
+}
+
+
+/* @media (max-width:1024px) */
+@media (max-width:1024px) {
+.search_wrap .search_box .field {
+    margin: 0px 5px;
+}
+
+.banner_wrap .slider .search_icon .iconbx {
+    margin: 0px 12px 40px;
+}
+
+.search_wrap .search_box .field {
+    width: 26%;
+}
+
+.search_wrap .search_box .field {
+    background: url("../images/icon.png") no-repeat scroll 184px -2px / 16% auto #FFF;
+}
+
+.search_wrap .search_box .field.club {
+    background: url("../images/icon.png") no-repeat scroll 180px -34px / 16% auto #FFF;
+}
+
+.search_wrap .search_box .field.event {
+    background: url("../images/icon.png") no-repeat scroll 184px -70px / 16% auto #FFF;
+}
+
+.banner_wrap .slider .arrow {
+    margin-top: 15%;
+}
+
+.Events .heading {
+    width: 35.5%;
+}
+
+.Events .box_wrap {
+    width: 70%;
+}
+
+.Events .link {
+    width: 16.5%;
+}
+
+}

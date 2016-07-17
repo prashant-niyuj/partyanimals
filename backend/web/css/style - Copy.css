@@ -1,0 +1,755 @@
+/*************** Lato Font  **********************/
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+/*************** Body Style  **********************/
+
+html {
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+
+body{
+  margin:0;
+  padding:0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+}
+
+*
+{
+  margin:0;
+  padding:0;
+}
+
+
+html, body{
+	font-family: 'Lato', sans-serif !important;
+    height: 100%;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+color: #000;
+font-size:13px;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+color: #000;
+font-size:13px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+color: #000 !important;
+font-size:13px;
+}
+
+/*************** Header Style  **********************/
+header{
+background:#333333;
+padding:20px 0px 20px 0px;
+}
+
+header .logo{
+color:#fff;
+font-size:40px;
+font-weight:300;
+font-style:italic;
+}
+
+header .logo:hover{
+color:#e9e9e9;
+}
+
+header nav ul li{
+padding:0px 4px;
+}
+
+header nav ul li a{
+color:#fff;
+font-size:16px;
+}
+
+header nav ul li a:hover{
+color:#e9e9e9;
+background:none !important;
+}
+
+/*************** Party-Animal-Top-Banner Style  **********************/
+.party-animal-top-banner{
+background:#eaeaea;
+border-bottom: 1px solid #BDBDBD;
+}
+
+.party-animal-top-banner h1{
+color:#0a9ad1;
+font-size:26px;
+font-weight:300;
+padding: 0px 0px 42px 0px;
+}
+
+.party-animal-top-banner h2{
+color:#000;
+font-size:25px;
+font-weight:700;
+padding: 25px 0px 0px 0px;
+}
+
+/*************** Party-Animal-Search-Form Style  **********************/
+.party-animal-search-form{
+background: rgba(0, 0, 0, 0.40);
+padding: 23px 0px 9px 0px;
+}
+
+.party-animal-search-form .input-sm{
+padding: 12px 11px;
+border-radius:5px;
+height:auto !important;
+}
+
+.party-animal-search-form .form-control{
+height:auto !important;
+}
+
+.party-animal-search-form .location{
+background: #fff url(../images/search-form/search-location.png) no-repeat 91% 55%;
+}
+
+.party-animal-search-form .club{
+background: #fff url(../images/search-form/search-club.png) no-repeat 91% 55%;
+}
+
+.party-animal-search-form .event{
+background: #fff url(../images/search-form/search-event.png) no-repeat 91% 55%;
+}
+
+.party-animal-search-form .btn{
+padding: 11px 30px;
+background: #09739b; /* Old browsers */
+background: -moz-linear-gradient(top, #09739b 0%, #0a9ad1 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#09739b), color-stop(100%,#0a9ad1)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #09739b 0%,#0a9ad1 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #09739b 0%,#0a9ad1 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #09739b 0%,#0a9ad1 100%); /* IE10+ */
+background: linear-gradient(to bottom, #09739b 0%,#0a9ad1 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09739b', endColorstr='#0a9ad1',GradientType=0 ); /* IE6-9 */
+border-radius:5px;
+}
+
+/*************** Party-Animal-Slider Style  **********************/
+.slider .carousel-control .glyphicon-chevron-left{
+margin-left: -24px !important;
+}
+
+.carousel-control .glyphicon-chevron-right{
+margin-right: -24px !important;
+}
+
+.slider .item{
+min-height:350px;
+}
+
+.slider .club-hover p{
+display:none;
+}
+
+.slider .club-hover:hover p{
+color:#fff;
+font-weight:500;
+display:block;
+position: absolute;
+top: 40px;
+left: 45px;
+text-align: center;
+background:#0a9ad1;
+padding:6px 13px;
+border-radius:5px;
+}
+
+.slider .carousel-control.left,.slider .carousel-control.right{
+color:#000;
+background:none;
+}
+
+.slider .carousel-control .glyphicon-chevron-left{
+background:url(../images/slider/left-arrow.png) no-repeat center;
+height:100%;
+width:100%;
+margin-top: -168px;
+}
+
+.slider .carousel-control .glyphicon-chevron-right{
+background:url(../images/slider/right-arrow.png) no-repeat center;
+height:100%;
+width:100%;
+margin-top: -168px;
+}
+
+.slider .glyphicon-chevron-left:after,.slider .glyphicon-chevron-left:before{
+display:none;
+}
+
+.slider .glyphicon-chevron-right:before,.slider .glyphicon-chevron-right:after{
+display:none;
+}
+
+
+.slider .carousel-indicators{
+display:none;
+}
+
+.slider .group-1{
+padding:0px 0px 30px 0px;
+}
+
+
+/*************** Party-Animal-Events Style  **********************/
+.party-animal-events h2{
+color:#000;
+font-size:26px;
+padding:20px 0px 50px 0px;
+}
+
+.party-animal-events .event-heading{
+font-size:21px;
+color:#fff;
+padding: 9px 60px 9px 16px;
+background: #0A99D1 url(../images/btn-bg.jpg) no-repeat right;
+padding: 9px 60px 9px 16px;
+}
+
+.party-animal-events h3{
+margin:0px;
+padding: 0px 0px 15px 0px;
+}
+
+.party-animal-events h5{
+color:#0a9ad1;
+font-size: 17px;
+font-weight:600;
+margin:0px;
+padding:0px 0px 10px 0px;
+}
+
+.party-animal-events .event-1{
+padding: 0px 0px 50px 0px;
+}
+
+.party-animal-events .event-2{
+padding: 0px 0px 30px 0px;
+}
+
+
+.party-animal-events .border-right{
+border-right:1px solid #000;
+margin: 0px 0px 9px 0px;
+}
+
+.party-animal-events .border-top{
+border-top:1px solid #000;
+}
+
+.party-animal-events .btn{
+margin:10px 0px 0px 0px;
+padding: 9px 24px;
+background: #09739b; /* Old browsers */
+background: -moz-linear-gradient(top, #09739b 0%, #0a9ad1 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#09739b), color-stop(100%,#0a9ad1)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #09739b 0%,#0a9ad1 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #09739b 0%,#0a9ad1 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #09739b 0%,#0a9ad1 100%); /* IE10+ */
+background: linear-gradient(to bottom, #09739b 0%,#0a9ad1 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09739b', endColorstr='#0a9ad1',GradientType=0 ); /* IE6-9 */
+}
+
+.party-animal-events .event-highlight img{
+width:100%;
+}
+
+.party-animal-events .event-highlight{
+background:#f5f5f5;
+padding: 10px 21px 10px 10px;
+border-radius: 8px;
+border: 1px solid #C8C8C8;
+-webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */    -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */    
+box-shadow: 3px 3px 5px 0px #B2AFAF;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */;
+}
+
+.party-animal-events .event-highlight .time-date,.location{
+font-size:15px;
+line-height:24px;
+}
+
+.party-animal-events .more-event-btn{
+color:#fff;
+font-size:21px;
+text-align:right !important;
+background: #0A99D1 url(../images/btn-bg.jpg) no-repeat right;
+padding: 9px 60px 9px 16px
+}
+
+.party-animal-events .more-events-button a:hover{
+text-decoration:none;
+}
+
+/*************** Footer Style  **********************/
+footer{
+color:#fff;
+background:#333333;
+padding:30px 0px 16px 0px;
+margin: 24px 0px 0px 0px;
+}
+
+footer h3{
+font-size:16px;
+font-weight:600;
+padding:0px 0px 13px 0px;
+}
+
+footer ul li{
+padding:0px 0px 5px 0px;
+}
+
+footer ul li a{
+color:#fff;
+}
+
+footer a{
+color:#fff;
+}
+
+footer a:hover{
+text-decoration:none;
+color:#fff;
+}
+
+footer .how-it-works-description p{
+width:80%;
+}
+
+footer .social img{
+padding:0px 6px;
+}
+
+footer .border-top{
+border-top:1px solid #fff;
+}
+
+footer .party-animal-copyright p{
+padding:20px 0px 0px 0px;
+}
+
+footer .party-animal-copyright{
+margin:25px 0px 0px 0px;
+}
+
+
+/*************** Media Screen 1024px Style  **********************/
+@media screen and (max-width: 1024px){
+
+.slider .club-hover:hover p {
+top: 30px;
+left: 32px;
+padding: 6px 10px;
+}
+
+
+/*************** Media Screen 980px Style  **********************/
+@media screen and (max-width: 980px){
+
+header {
+padding: 10px 0px 10px 0px;
+}
+
+header .logo {
+color: #fff;
+font-size: 31px;
+}
+
+header .nav li a {
+padding: 20px 7px;
+}
+
+header .navbar-toggle{
+color:#fff;
+font-size:22px;
+}
+
+.party-animal-top-banner h1,.party-animal-top-banner h2{
+font-size:25px;
+}
+
+.party-animal-search-form .btn{
+width:100%;
+}
+
+.slider{
+padding:50px 0px 0px 0px;
+}
+
+.party-animal-events h2 {
+padding: 20px 0px 27px 0px;
+}
+
+.party-animal-events .event-heading {
+font-size: 21px;
+padding: 9px 51px 9px 16px
+}
+
+.party-animal-events h3 {
+padding: 16px 0px 15px 0px;
+}
+
+.party-animal-events .more-event-btn {
+	font-size: 21px;
+}
+
+}
+
+
+/*************** Media Screen 768px Style  **********************/
+@media screen and (max-width: 768px){
+
+header {
+padding: 10px 0px 10px 0px;
+}
+
+header .logo {
+color: #fff;
+font-size: 31px;
+}
+
+header .nav li a {
+padding: 20px 7px;
+}
+
+header .navbar-toggle{
+color:#fff;
+font-size:22px;
+}
+
+.party-animal-top-banner h1,.party-animal-top-banner h2{
+font-size:25px;
+}
+
+.party-animal-search-form .btn{
+width:100%;
+}
+
+.slider{
+padding:50px 0px 0px 0px;
+}
+
+.party-animal-events h2 {
+padding: 20px 0px 27px 0px;
+}
+
+.party-animal-events .event-heading {
+font-size: 21px;
+padding: 9px 51px 9px 16px
+}
+
+.party-animal-events h3 {
+padding: 16px 0px 15px 0px;
+}
+
+.party-animal-events .more-event-btn {
+font-size: 21px;
+}
+
+footer .how-it-works-description p{
+width:100%;
+}
+
+}
+.party-animal-heading {
+	display:none;
+}
+/*************** Media Screen 640px Style (orientation: landscape)  **********************/
+@media only screen and (max-device-width: 640px) and (orientation: landscape){
+
+header {
+padding: 10px 0px 10px 0px;
+}
+
+header .logo {
+color: #fff;
+font-size: 27px;
+}
+
+header .nav li a {
+padding:10px 0px;
+}
+
+header .navbar-toggle{
+color:#fff;
+font-size:22px;
+}
+
+.party-animal-top-banner h1,.party-animal-top-banner h2{
+font-size:21px;
+}
+
+.party-animal-search-form{
+padding: 23px 0px 9px 0px;
+}
+
+.party-animal-search-form .btn{
+width:100%;
+}
+
+.slider{
+padding:50px 0px 0px 0px;
+}
+
+.party-animal-events h2 {
+padding: 20px 0px 27px 0px;
+}
+
+.party-animal-events .event-heading {
+font-size: 15px;
+padding: 9px 42px 9px 16px
+}
+
+.party-animal-events h3 {
+padding: 16px 0px 15px 0px;
+}
+
+.party-animal-events .time-date{
+margin:0px 0px 15px 0px;
+}
+
+.party-animal-events .border-right{
+border-right:0px;
+}
+
+.party-animal-events .more-event-btn {
+font-size: 15px;
+}
+
+.form-640{
+width:50% !important;
+}
+
+footer .footer-640{
+width: 33.33333333% !important;
+}
+
+footer .how-it-works-description p{
+width:100%;
+}
+
+}
+
+
+/*************** Media Screen 360px Style (orientation: portrait) **********************/
+@media only screen and (max-device-width: 360px) and (orientation: portrait){
+
+header {
+padding: 10px 0px 10px 0px;
+}
+
+header .logo {
+color: #fff;
+font-size: 27px;
+}
+
+header .nav li a {
+padding:10px 0px;
+}
+
+header .navbar-toggle{
+color:#fff;
+font-size:22px;
+}
+
+.party-animal-top-banner h1,.party-animal-top-banner h2{
+font-size:21px;
+}
+
+.party-animal-search-form{
+padding: 23px 0px 22px 0px;
+}
+
+.party-animal-search-form .btn{
+width:100%;
+}
+
+.slider{
+padding:50px 0px 0px 0px;
+}
+
+.party-animal-events h2 {
+padding: 20px 0px 27px 0px;
+}
+
+.party-animal-events .event-heading {
+font-size: 15px;
+padding: 9px 42px 9px 16px
+}
+
+.party-animal-events h3 {
+padding: 16px 0px 15px 0px;
+}
+
+.party-animal-events .time-date{
+margin:0px 0px 15px 0px;
+}
+
+.party-animal-events .border-right{
+border-right:0px;
+}
+
+.party-animal-events .more-event-btn {
+font-size: 15px;
+}
+
+footer .how-it-works-description p{
+width:100%;
+}
+
+}
+
+/*************** Media Screen 480px Style (orientation: landscape) **********************/
+@media only screen and (max-device-width: 480px) and (orientation: landscape){
+
+header {
+padding: 10px 0px 10px 0px;
+}
+
+header .logo {
+color: #fff;
+font-size: 27px;
+}
+
+header .nav li a {
+padding:10px 0px;
+}
+
+header .navbar-toggle{
+color:#fff;
+font-size:22px;
+}
+
+.party-animal-top-banner h1,.party-animal-top-banner h2{
+font-size:21px;
+}
+
+.party-animal-search-form{
+padding: 23px 0px 9px 0px;
+}
+
+.party-animal-search-form .btn{
+width:100%;
+}
+
+.slider{
+padding:50px 0px 0px 0px;
+}
+
+.party-animal-events h2 {
+padding: 20px 0px 27px 0px;
+}
+
+.party-animal-events .event-heading {
+font-size: 15px;
+padding: 9px 42px 9px 16px
+}
+
+.party-animal-events h3 {
+padding: 16px 0px 15px 0px;
+}
+
+.party-animal-events .time-date{
+margin:0px 0px 15px 0px;
+}
+
+.party-animal-events .border-right{
+border-right:0px;
+}
+
+.party-animal-events .more-event-btn {
+font-size: 15px;
+}
+
+footer .how-it-works-description p{
+width:100%;
+}
+
+
+
+}
+
+
+/*************** Media Screen 320px Style (orientation: portrait)  **********************/
+@media only screen and (max-device-width: 320px) and (orientation: portrait){
+
+header {
+padding: 10px 0px 10px 0px;
+}
+
+header .logo {
+color: #fff;
+font-size: 27px;
+}
+
+header .nav li a {
+padding:10px 0px;
+}
+
+header .navbar-toggle{
+color:#fff;
+font-size:22px;
+}
+
+.party-animal-top-banner h1,.party-animal-top-banner h2{
+font-size:21px;
+}
+
+.party-animal-search-form{
+padding: 23px 0px 22px 0px;
+}
+
+.party-animal-search-form .btn{
+width:100%;
+}
+
+.slider{
+padding:50px 0px 0px 0px;
+}
+
+.party-animal-events h2 {
+padding: 20px 0px 27px 0px;
+}
+
+.party-animal-events .event-heading {
+font-size: 15px;
+padding: 9px 42px 9px 16px
+}
+
+.party-animal-events h3 {
+padding: 16px 0px 15px 0px;
+}
+
+.party-animal-events .time-date{
+margin:0px 0px 15px 0px;
+}
+
+.party-animal-events .border-right{
+border-right:0px;
+}
+
+.party-animal-events .more-event-btn {
+font-size: 15px;
+}
+
+footer .how-it-works-description p{
+width:100%;
+}
+
+}
+#req_res_loading {
+	background-image: url("../images/google-loading-icon.gif");
+    	height:200px;
+	width:100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	display:none;
+}
