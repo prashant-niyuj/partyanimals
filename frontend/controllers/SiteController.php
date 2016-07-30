@@ -271,7 +271,7 @@ class SiteController extends Controller {
                     $view="orderconfirm";            
                     $param['subject']="Party Animals Confirm Booking";
                     $sendparam=array('mobile_no'=>$param['mobile_no'],'email'=>$param['email'],'club_name'=>$param['club_name'],'booking_date'=>$param['booking_date'],'pnr'=>$param['pnr'],'booking_type'=>$param['booking_type'],'user_name'=>$param['user_name']);
-                    $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam,'booking@partyanimals.in',"Party Amimals Booking");
+                    $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam,'support@partyanimals.in',"Party Amimals Booking");
                     $view="sms/orderconfirm";
                     //$sendsms=$utilsobj->sendSMS($param['mobile_no'], $param['subject'], $view, $sendparam);
                     
@@ -317,7 +317,7 @@ class SiteController extends Controller {
                     $param['subject']="Party Amimals Booking Cancelled";
                     $view="ordercancel";
                     $sendparam=array('mobile_no'=>$param['mobile_no'],'email'=>$param['email'],'club_name'=>$param['club_name'],'booking_date'=>$param['booking_date'],'booking_type'=>$param['booking_type'],'user_name'=>$param['user_name']);
-                    $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam,'booking@partyanimals.in',"Party Amimals Booking");
+                    $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam,'support@partyanimals.in',"Party Amimals Booking");
                     return $this->render('thankyou',['is_error'=>'cancel','msg'=>'Party Amimals booking Cancelled']);
                 }
                 if($b_id > 1 && $f_code == 'F' ) {
@@ -361,7 +361,7 @@ class SiteController extends Controller {
                     $param['subject']="oops! some think went wrong";
                     $view="orderfail";
                     $sendparam=array('mobile_no'=>$param['mobile_no'],'email'=>$param['email'],'club_name'=>$param['club_name'],'booking_date'=>$param['booking_date'],'booking_type'=>$param['booking_type'],'user_name'=>$param['user_name']);
-                    $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam,'booking@partyanimals.in',"Party Amimals Booking");
+                    $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam,'support@partyanimals.in',"Party Amimals Booking");
                     return $this->render('thankyou',['is_error'=>'fail','msg'=>'Party Amimals booking Fail','reference_id'=>$b_id]);
             }
         }

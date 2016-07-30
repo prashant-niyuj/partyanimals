@@ -122,9 +122,10 @@ public function sendMessage($to, $subject, $view, $params = [],$from='',$from_na
        //  var_dump($message);die;
          if($from=="")
          {
-        if ($this->sender === null) {
-            $this->sender = isset(\Yii::$app->params['adminEmail']) ? \Yii::$app->params['adminEmail'] : 'no-reply@party-animals.in';
-        }
+           
+                //$this->sender = isset(\Yii::$app->params['adminEmail']) ? \Yii::$app->params['adminEmail'] : 'no-reply@party-animals.in';
+                $this->sender ="support@partyanimals.in";
+           
          }else{
              
              $this->sender =$from;
@@ -138,20 +139,22 @@ public function sendMessage($to, $subject, $view, $params = [],$from='',$from_na
     {
         $from_name = "Party Animals";
     }
+    //$this->sender ="support@partyanimals.in";
 
     $headers .= 'From: '.$from_name.' <'.$this->sender .'>'. "\r\n";
+   //  $headers .= 'From: support@partyanimals.in'. "\r\n";
     $viewPath = $this->viewPath."/".$view;
            
       
         $message = Yii::$app->controller->renderPartial($viewPath, $params);
         
-         $sendmail=  mail($to, $subject, $message,$headers);
+        // $sendmail=  mail($to, $subject, $message,$headers);
 
-      /*  $sendmail=$mailer->compose($viewpath, $params)
+        $sendmail=$mailer->compose($viewpath, $params)
                         ->setTo($to)
                         ->setFrom($this->sender)
                         ->setSubject($subject)
-                        ->send();*/
+                        ->send();
                         
      
         

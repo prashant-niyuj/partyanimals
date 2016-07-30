@@ -7,22 +7,57 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ClubBookingNamesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Club Booking Names';
+$this->title = 'Booking';
 $this->params['breadcrumbs'][] = $this->title;
 
 $url = \Yii::$app->urlManager->createUrl(['club-booking-names/setentry']);
 $searchurl = \Yii::$app->urlManager->createUrl(['club-booking-names/index']);
 $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']);
+$issearch=  Yii::$app->request->get("ClubBookingNamesSearch");
+
+$flash = Yii::$app->session->getFlash('success');
+
+?>
+ <?php
+    if(isset($flash) && $flash!="")
+    {?>
+    <div class="alert-success alert fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+        <?php  echo $flash;?>
+    </div>
+    <?php
+    
+     Yii::$app->session->removeFlash('success');
+    }
+    ?>
+<?php
+
+$this->registerJSFile(Yii::$app->request->baseUrl . "/js/jquery.bUI.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+
 ?>
 <div style="float:left;padding-right:10px;"><?php echo "Booking Capacity: ".$bookinginfo['booking_capacity']?></div>
      <div style="float:left;padding-right:10px;"><?php echo "Booked: ".$bookinginfo['no_of_booking']?></div>
     <div style="float:left;padding-right:10px;"><?php echo "No of Entry : ".$noofentry?></div>
-    <div style="padding-right:10px;"><a href="#" onclick="getfull('<?php echo $fullcluburl?>',<?php echo $club_id?>)"> <?php echo "Full Club "?></a></div>
+    
+    <div style="padding-right:10px;">
+        <?php if($bookinginfo['is_full']==0){?>
+        <a href="#" onclick="getfull('<?php echo $fullcluburl?>',<?php echo $club_id?>)"> <?php echo "Full Club "?></a>
+        <?php }else{
+            echo "<b style='color:red'>Club is full.</b>";
+        }?>
+    </div>
     <br/>
 <div class="club-booking-names-index">
    
  <div id="w0" class="grid-view">
-    
+<div class="row">
+        <div class="form-group">
+          <div class="col-lg-3"><input class="form-control" name="ClubBookingNamesSearch[booking_no]" type="text" id="booking_no" placeholder="Enter PNR No"></div>
+                 <div class="col-lg-2"><button onclick="getSearch('<?php echo $searchurl?>')" class="btn btn-success">Search</button></div>
+        </div>
+</div>
+   
+     <br/><br/>
 <table class="table table-striped table-bordered"><thead>
 <tr><th>#</th>
     <th><a href="/index.php?r=club-booking-names%2Findex&amp;sort=booking_no" data-sort="booking_no">Booking No</a></th>
@@ -31,30 +66,27 @@ $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']
     <th><a href="/index.php?r=club-booking-names%2Findex&amp;sort=booking_name" data-sort="booking_name">Booking Name</a></th>
     <th><a href="/index.php?r=club-booking-names%2Findex&amp;sort=mobile_no" data-sort="mobile_no">Mobile No</a></th>
     <th><a href="/index.php?r=club-booking-names%2Findex&amp;sort=is_in" data-sort="is_in">Is In</a></th></tr>
-    <tr id="w0-filters" class="filters">
-        <td>&nbsp;</td>
-        <td><input class="form-control" name="ClubBookingNamesSearch[booking_no]" type="text" id="booking_no" onBlur="getSearch('<?php echo $searchurl?>',this.value)"></td>
-        <!--<td><input class="form-control" name="ClubBookingNamesSearch[booking_date]" type="text" id="booking_date" onBlur="getSearch('<?php echo $searchurl?>',this.value)"></td>-->
-        <td><input class="form-control" name="ClubBookingNamesSearch[booking_category]" type="text" id="booking_category" onBlur="getSearch('<?php echo $searchurl?>',this.value)"></td>
-        <td><input class="form-control" name="ClubBookingNamesSearch[booking_name]" type="text" id="booking_name" onBlur="getSearch('<?php echo $searchurl?>',this.value)"></td>
-        <td><input class="form-control" name="ClubBookingNamesSearch[mobile_no]" type="text" id="mobile_no" onBlur="getSearch('<?php echo $searchurl?>',this.value)"></td>
-        <td>Action</td>
-    </tr>
+ 
 </thead>
 <tbody>
     <?php
+    if(isset($issearch))
+    {
     $i=1;
     $j=0;
     $groupno="0";
     if(count($models))
     {
+       $norecord=0;
     $bookingno=$models[0]['booking_no'];
     }else{
+        $norecord=1;
         $bookingno=""; 
     }
     $bookingName="";
     $flag=0;
-   
+   if($norecord==0)
+   {
     foreach($models as $data)
     {
      if(isset($models[$j+1]['booking_no']))
@@ -103,7 +135,7 @@ $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']
     <td>
         <?php if( $data['is_in']==0 && $bookinginfo['is_full']==0){?>
         <div>
-            <button onclick="getEntry(<?php echo $data['id']?>,'<?php echo $url?>','<?php echo $data['club_booking_id']?>','<?php echo $data['booking_category']?>','0')">In</button>
+            <button id="bookingIn_<?php echo $data['id']?>" onclick="getEntry(<?php echo $data['id']?>,'<?php echo $url?>','<?php echo $data['club_booking_id']?>','<?php echo $data['booking_category']?>','0')">In</button>
            
         </div>
         <?php }else{
@@ -118,7 +150,15 @@ $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']
   
     $j++;
     
-        }?>
+    }
+   }else{?>
+       <td colspan="6">No Matching Record Found.</td>
+   <?php }
+    
+    }else{?>
+<tr data-key="1"><td colspan="6"></td></tr> 
+        
+    <?php }?>
 </tbody></table>
 </div>
 </div>
@@ -128,9 +168,11 @@ $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']
  
  ?>
 <script>
+  
    function getEntry(record_id,url,club_booking_id,booking_category,all_entry)
    {
-       
+       $.blockUI();
+       $("#bookingIn_"+record_id).prop('disabled', true);
        var r=confirm("Are you sure?");
        if(r===true)
        {
@@ -146,17 +188,21 @@ $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']
 
             }
         });
+        }else{
+             $.unblockUI();
+             $("#bookingIn_"+record_id).prop('disabled', false);
         }
        
    }
-   function getSearch(url,fieldvalue)
+   function getSearch(url)
    {
       
-       window.location=url+"&ClubBookingNamesSearch[booking_no]="+$("#booking_no").val()+"&ClubBookingNamesSearch[mobile_no]="+$("#mobile_no").val()+"&ClubBookingNamesSearch[booking_name]="+$("#booking_name").val()+"&ClubBookingNamesSearch[booking_category]="+$("#booking_category").val();
+       window.location=url+"&ClubBookingNamesSearch[booking_no]="+$("#booking_no").val();
        
    }
    function getfull(fullcluburl,club_id)
    {
+        $.blockUI();
        var r=confirm("Are you sure?");
        if(r===true)
        {
@@ -166,10 +212,13 @@ $fullcluburl = \Yii::$app->urlManager->createUrl(['club-booking-names/fullclub']
             data: {'club_id': club_id},
             url: fullcluburl,
             success: function(response) {
-               location.reload(); 
+              // location.reload(); 
 
             }
         });
+     }else{
+         
+          $.unblockUI();
      }
        
    }

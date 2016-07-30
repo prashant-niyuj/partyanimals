@@ -74,7 +74,7 @@ class UserSearch extends BaseUserSearch
         ]);
          if($userinfo['role_id']==2)
         { 
-            $query->andWhere(['club_id'=>$userinfo['club_id'],'role_id'=>array(2,3)]);
+            $query->andWhere(['club_id'=>$userinfo['club_id'],'role_id'=>array(2,3,5)]);
         }
 
         if (!($this->load($params) && $this->validate())) {

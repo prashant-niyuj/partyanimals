@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $userinfo=Yii::$app->user->identity;
 if($userinfo['role_id']==2)
 {
-    $this->title = 'Set Booking Capacity Per Date-'.$clubName->name;
+    $this->title = $clubName->name.' - Set Booking Capacity For Date';
 }
 ?>
 <div class="booking-capacity-asdate-index">
@@ -35,9 +35,18 @@ if($userinfo['role_id']==2)
           //  'id',
            'clubName',
             'booking_capacity',
-            [
+          
+              [
             'attribute' => 'capacity_active_date',
              'format' =>  ['date', 'php:Y-m-d'],
+             'filter' => DatePicker::widget([
+              'model'      => $searchModel,
+                'attribute'  =>   'capacity_active_date',
+                'dateFormat' => 'php:Y-m-d',
+                'options' => [
+                    'class' => 'form-control'
+                ]
+            ]),
             ],
           /*          [
             'attribute' =>  'created_at',
@@ -68,9 +77,17 @@ if($userinfo['role_id']==2)
           //  'id',
           // 'clubName',
             'booking_capacity',
-            [
+               [
             'attribute' => 'capacity_active_date',
              'format' =>  ['date', 'php:Y-m-d'],
+             'filter' => DatePicker::widget([
+              'model'      => $searchModel,
+                'attribute'  =>   'capacity_active_date',
+                'dateFormat' => 'php:Y-m-d',
+                'options' => [
+                    'class' => 'form-control'
+                ]
+            ]),
             ],
           /*          [
             'attribute' =>  'created_at',

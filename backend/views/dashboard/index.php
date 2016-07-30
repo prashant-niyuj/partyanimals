@@ -2,6 +2,10 @@
 <?php
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'][] = $this->title;
+$urltotalbooking = \Yii::$app->urlManager->createUrl(['/club-booking/index']);
+$urltodaysbooking= \Yii::$app->urlManager->createUrl(['/club-booking/index','ClubBookingSearch[booking_date]'=>date("Y-m-d")]);
+$urluserregistration= \Yii::$app->urlManager->createUrl(['/user/admin/index']);
+
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
     <script type='text/javascript'>
@@ -60,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="/index.php?r=club-booking/index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo $urltotalbooking?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -73,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="/index.php?r=club-booking/index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo $urltodaysbooking?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -86,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="/index.php?r=club-booking/index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo $urluserregistration?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
            

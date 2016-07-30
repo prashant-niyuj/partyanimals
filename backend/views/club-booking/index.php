@@ -8,10 +8,19 @@ use yii\jui\DatePicker;
 /* @var $searchModel backend\models\ClubBookingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Club Bookings';
+$userinfo=  Yii::$app->user->identity;
+
+if($userinfo['role_id']==2 || $userinfo['role_id']==5)
+{
+    $this->title = $clubName->name.' - Bookings';
+}else{
+
+ $this->title = 'Bookings';
+}
+
 $this->params['breadcrumbs'][] = $this->title;
 
-$userinfo=  Yii::$app->user->identity;
+
 ?>
 <div class="club-booking-index">
 

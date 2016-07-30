@@ -20,7 +20,7 @@ if(!Yii::$app->user->isGuest)
    $arr_data['phone'] =$profile['phone_no'];
 }
 $tax_charges = 0;
-$convienice_charges = 20;
+$convienice_charges = $obj_club_info->convenience_fee;
 ?>
 <div class="partyanimals">
 	
@@ -228,13 +228,13 @@ $convienice_charges = 20;
 		            
           </td>
         </tr>
-		<?php if($convienice_charges > 0 )
+		<?php if($convienice_charges >= 0 )
 			{ ?>
 		<tr>
           <td><b>Convienice Charges</b></td>
           <td><span class="ru"></span>
 			<?php
-				$convienice_charges = 10;
+				//$convienice_charges = 10;
 				echo number_format($convienice_charges,2);
 			?>
 				

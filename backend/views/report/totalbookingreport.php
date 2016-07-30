@@ -12,6 +12,7 @@ $this->title = 'Total Report';
 $this->params['breadcrumbs'][] = $this->title;
 $userinfo=  Yii::$app->user->identity;
 //var_dump($dataProvider->models);die;
+$modelclub = new \backend\models\ClubBooking();
 
 ?>
 
@@ -89,8 +90,27 @@ $userinfo=  Yii::$app->user->identity;
                             
                     }
              ],
-            
-             
+            [
+             'label'=>'IN',
+            // 'attribute'=> 'booking_total',
+             'format' => 'raw',
+             'value'=>function($data)use($modelclub){
+                  // var_dump($data);
+                   // return Html::a($data['booking_total'], ['daily-report','booking_date'=>$data['booking_date'],'c_id'=>$data['club_id']]);
+                     // return $data['booking_date'];
+                        return $modelclub->getIn($data['booking_date'],1);
+                    }
+             ],
+             [        
+             'label'=>'NOT IN',
+             //'attribute'=> 'booking_total',
+             'format' => 'raw',
+             'value'=>function($data)use($modelclub){
+                  // var_dump($data);
+                   // return Html::a($data['booking_total'], ['daily-report','booking_date'=>$data['booking_date'],'c_id'=>$data['club_id']]);
+                        return $modelclub->getIn($data['booking_date'],0);     
+                    }
+             ],
            // 'id',
            // 'pa_pnr',
            // 'clubName',

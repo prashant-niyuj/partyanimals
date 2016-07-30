@@ -100,7 +100,7 @@ class AdminController extends BaseAdminController
             
         }else{
             
-        $clubModels = \backend\models\Club::find()->asArray()->all();
+        $clubModels = \backend\models\Club::find()->where(['is_active'=>1])->asArray()->all();
         $userroleModels = \backend\models\UserRole::find()->asArray()->where(['id'=>array(2,3,5)])->all();
         }
         $clubArray = ArrayHelper::map($clubModels, 'id', 'name');
@@ -138,10 +138,18 @@ class AdminController extends BaseAdminController
          
         if($userinfo['role_id']==2)
         {
+             
                $clubModels = \backend\models\Club::find()->asArray()->where(['id'=>$userinfo['club_id']])->all();
-                $userroleModels = \backend\models\UserRole::find()->asArray()->where(['id'=>array(3,5)])->all();
+              
+              if($userinfo['id']==$id)
+              {
+                $userroleModels = \backend\models\UserRole::find()->asArray()->where(['id'=>array(2)])->all();
+              }else{
+                  
+                  $userroleModels = \backend\models\UserRole::find()->asArray()->where(['id'=>array(3,5)])->all();
+              }
         }else{
-        $clubModels = \backend\models\Club::find()->asArray()->all();
+        $clubModels = \backend\models\Club::find()->where(['is_active'=>1])->asArray()->all();
          $userroleModels = \backend\models\UserRole::find()->asArray()->where(['id'=>array(2,3,5)])->all();
         }
         $clubArray = ArrayHelper::map($clubModels, 'id', 'name');
@@ -175,6 +183,42 @@ class AdminController extends BaseAdminController
         $profile = $user->profile;
         
         $this->performAjaxValidation($profile);
+         $request=Yii::$app->request->post();
+           $path = Yii::$app->params['userimagePath']; 
+      
+      
+        $session = Yii::$app->session;
+    //  $userPermission=  $session->set('userPermission');
+         
+          if($request)
+          {
+              $image = \yii\web\UploadedFile::getInstance($profile, 'user_image');
+      
+              if (isset($image))
+                   {
+                        
+                        if(in_array($image->extension,[ 'png','jpg','jpeg','bmp','gif']))
+                        {
+                            $randstring = uniqid();
+                            $fullpath = Yii::$app->basePath . $path . $randstring. '.' . $image->extension;
+                          /*  if(isset($profile->user_image) && $profile->user_image!="noimage.png" && file_exists($oldimage))
+                            {
+                                unlink($oldimage);
+                            }*/
+                            $image->saveAs($fullpath);
+                            $profile->user_image=$randstring. '.' . $image->extension;
+                            
+                            //$session->set("user_image", $profile->user_image);
+                        }
+                        else
+                        {
+                         $error = "Invalid File Format";
+                         return $this->render('_profile', ['profile' => $profile,'user'=> $user, 'error' => $error]);
+                        }
+                   }
+                   
+          }
+           
         
        // var_dump($profile_info['Profile']);die;
         if ($profile->load(Yii::$app->request->post()) && $profile->save()) {

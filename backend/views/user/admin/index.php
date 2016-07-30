@@ -29,7 +29,8 @@ if($userinfo['role_id']==1)
 {
 $this->title = Yii::t('user', 'Manage Owner and Gatekeeper Account');
 }else{
-   $this->title = Yii::t('user', 'Manage Gatekeeper Account'); 
+    $clubmodel=  backend\models\Club::findOne($userinfo['club_id']);
+   $this->title = Yii::t('user', $clubmodel->name.'-Manage Gatekeeper Account'); 
 }
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -49,20 +49,24 @@ class Club extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','bank_account_holder_name', 'address', 'club_capacity', 'booking_capacity',  'city_id', 'priority_range', 'booking_rate_ladies', 'booking_rate_boy', 'booking_rate_couple', 'is_active'], 'required'],
+            [['name','bank_account_holder_name', 'address', 'club_capacity', 'booking_capacity',  'city_id', 'priority_range', 'booking_rate_ladies', 'booking_rate_boy', 'booking_rate_couple', 'is_active','club_open_time','club_close_time','booking_close_time'], 'required'],
             [['club_capacity', 'booking_capacity', 'city_id', 'priority_range','convenience_fee', 'bank_account_number', 'is_active'], 'integer'],
-            [['booking_rate_ladies', 'booking_rate_boy', 'booking_rate_couple'], 'number'],
+            [['booking_rate_ladies', 'booking_rate_boy', 'booking_rate_couple','tax_rate','commission_rate','convenience_fee','commission_for_girl','commission_for_stage','commission_for_couple'], 'number'],
           //  [['club_open_days'], 'string'],
             [['logo'], 'file'],
-            [['booking_capacity'],'compare','compareAttribute'=>'club_capacity','operator'=>'<=','message'=>'booking capacity must be less than club capacity.'],
+         //   [['booking_capacity'],'compare','compareAttribute'=>'club_capacity','operator'=>'<=','message'=>'booking capacity must be less than club capacity.'],
+            ['booking_capacity','checkbooking'],
+          //  ['club_capacity','checkbooking'],
+            [['created_date', 'modified_date','facility'], 'safe'],
             [['created_date', 'modified_date'], 'safe'],
-            [['created_date', 'modified_date'], 'safe'],
-            [['name', 'area'], 'string', 'max' => 100],
+            [['name', 'area','TAN','PAN'], 'string', 'max' => 100],
             [['address'], 'string', 'max' => 250],   
             [['ifsc_code','MICR','swift_code','bank_account_number'],'unique','on'=>'create'],
             [['bank_name', 'bank_branch', 'ifsc_code'], 'string', 'max' => 50],
             [['bank_account_holder_name'], 'string', 'max' => 150],
+            [['ifsc_code'], 'string', 'max' => 11],
             [['MICR','swift_code'], 'string', 'max' => 150],
+            [['convenience_fee'], 'default','value'=>"0"],
             [['convenience_fee'], 'number'],
         ];
     }
@@ -75,6 +79,9 @@ class Club extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'club_open_time'=>"Club Open Time",
+            'club_close_time'=>"Club Close Time",
+            'booking_close_time'=>"Booking Close Time",
             'address' => 'Address',
             'club_capacity' => 'Club Capacity',
             'booking_capacity' => 'Booking Capacity',
@@ -103,7 +110,22 @@ class Club extends \yii\db\ActiveRecord
     {
         return $this->hasMany(BookingCapacityAsdate::className(), ['club_id' => 'id']);
     }
-
+    
+     public function checkbooking()
+        {
+           
+                $clubcapacity=$this->getAttribute("club_capacity");
+               $bookingcapacity=$this->getAttribute("booking_capacity");
+                
+                if($clubcapacity < $bookingcapacity)
+                {
+                     
+                    $this->addError('booking_capacity',"booking capacity must be less than club capacity");
+                     
+                    
+                }
+        }
+   
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -22,23 +22,25 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('user', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="partyanimals">
+<div class="site-login">
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-            </div>
-            <div class="panel-body">
-                <div class="alert alert-info">
-                    <p>
+
+                <h2 class="panel-title"><?= Html::encode($this->title) ?></h2>
+            
+            
+                    <p class="text-center">
                         <?= Yii::t('user', 'In order to finish your registration, we need you to enter your email address') ?>.
                     </p>
-                </div>
+                <div class="PAforms width30">
+                        <div class="row">
+                            <div class="col-md-12">
                 <?php $form = ActiveForm::begin([
                     'id' => 'connect-account-form',
                 ]); ?>
 
                 <?= $form->field($model, 'email') ?>
+                <?= $form->field($model, 'phone_no') ?>
 
                 <?= Html::submitButton(Yii::t('user', 'Continue'), ['class' => 'btn btn-success btn-block']) ?>
 
@@ -48,5 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-center">
             <?= Html::a(Yii::t('user', 'If you already registered, sign in and connect this account on settings page'), ['/user/settings/networks']) ?>.
         </p>
-    </div>
+</div>
+</div>
+</div>
 </div>

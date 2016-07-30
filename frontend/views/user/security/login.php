@@ -100,11 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register','formbooking'=>1]) ?>
             </p>
         <?php endif ?>
-        <?= Connect::widget([
-            'baseAuthUrl' => ['/user/security/auth']
-        ]) ?>
-  
-     
+           
     </div>
  </div>
    <?php }else{?>
@@ -147,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endif ?>
             <br/>
         <?php if ($module->enableRegistration): ?>
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
            
                 <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
             </div>

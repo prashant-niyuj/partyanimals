@@ -120,17 +120,20 @@ class ClubBooking extends \yii\db\ActiveRecord
             return "-";
         }
     }
-     public function getBookedName() {
-
+    public function getBookedName() 
+    {
+      
         if ($this->booked_type==0)
         {
-          $userinfo=\backend\models\User::findOne($this->user_id);
-          return $userinfo->username;
-        }else if($this->booked_type==1){
-            
-            
-          $userinfo= \backend\models\GuestUser::findOne($this->user_id);
-          return $userinfo->name;
+         //$userinfo=\backend\models\User::find()->where(['id'=>$this->user_id])->asArray()->one();
+          $club=ClubBookingNames::find()->select(['booking_name'])->where(['club_booking_id'=>$this->id])->asArray()->one();
+          return $club['booking_name'];
+        }
+        else if($this->booked_type==1)
+        {
+         // $userinfo= \backend\models\GuestUser::find()->where(['id'=>$this->user_id])->asArray()->one();;
+          $club=ClubBookingNames::find()->select(['booking_name'])->where(['club_booking_id'=>$this->id])->asArray()->one();
+          return $club['booking_name'];
         }
         else {
             return "-";

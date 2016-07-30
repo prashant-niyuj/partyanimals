@@ -57,21 +57,26 @@ $convienice_charges = $obj_club_info->convenience_fee;
         </tr>
         <tr>
 		  <td colspan="2">
-		  <table width="100%">
+		  <table width="80%">
 			<?php
 				if($arr_data['b_type'] == 'boy') {
 			?>		
 			<tr>
 				<td style="padding-bottom:5px">
 				 <div class="row clearfix">
-				 <div class="col-xs-6 col-md-6">
+				 <div class="col-xs-4 col-md-4">
 				 <div class="form-group">
 				 <input name="booking_person[]" type="text" placeholder="Mr." class="form-control " value="<?php echo $arr_data['name'] ?>">
 				 </div>
 				 </div>
-				 <div class="col-xs-6 col-md-6">
+				 <div class="col-xs-4 col-md-4">
 				 <div class="form-group">
 				 <input id="booking_person_mobile_0" name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " value="<?php echo $arr_data['phone'] ?>">
+				  </div>
+				  </div>
+                                 <div class="col-xs-4 col-md-4">
+				 <div class="form-group">
+				  <input id="booking_person_email_0" name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
 				  </div>
 				  </div>
 				  </div>
@@ -85,14 +90,19 @@ $convienice_charges = $obj_club_info->convenience_fee;
 			<tr>
 				<td style="padding-bottom:5px">
 				<div class="row clearfix">
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				  <input name="booking_person[]" type="text" placeholder="Miss." class="form-control" value="<?php echo $arr_data['name'] ?>">
 				 </div>
 				 </div>
-				 <div class="col-xs-6 col-md-6">
+				 <div class="col-xs-4 col-md-4">
 				 <div class="form-group">
 				  <input id="booking_person_mobile_0" name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " value="<?php echo $arr_data['phone'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+				  </div>
+				  </div>
+                                  <div class="col-xs-4 col-md-4">
+				 <div class="form-group">
+				  <input id="booking_person_email_0" name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
 				  </div>
 				  </div>
 				  </div>
@@ -105,16 +115,20 @@ $convienice_charges = $obj_club_info->convenience_fee;
 			<tr>
 				<td style="padding-bottom:5px">
 				<div class="row clearfix">
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				<input name="booking_person[]" type="text" placeholder="Mr." class="form-control " value="<?php echo $arr_data['name'] ?>">
 				</div>
 				</div>
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				 <input id="booking_person_mobile_0" name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " value="<?php echo $arr_data['phone'] ?>"> 
 				</div>
 				</div>
+                                <div class="col-xs-4 col-md-4">
+				 <div class="form-group">
+				  <input id="booking_person_email_0" name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+				  </div>
 				</div>
 				 <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
 				 </td>
@@ -122,16 +136,20 @@ $convienice_charges = $obj_club_info->convenience_fee;
 			<tr>
 				<td style="padding-bottom:5px">
 				<div class="row clearfix">
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				<input name="booking_person[]" type="text" placeholder="Miss." class="form-control " >
 				</div>
 				</div>
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				  <input name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " > 
 				</div>
 				</div>
+                                      <div class="col-xs-4 col-md-4">
+				 <div class="form-group">
+				  <input id="booking_person_email_0" name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+				  </div>
 				</div>
 				<!--a href="#" style="float:left;padding-left:10px">Edit</a-->
 				</td>
@@ -145,12 +163,12 @@ $convienice_charges = $obj_club_info->convenience_fee;
 			<tr>
 				<td style="padding-bottom:5px">
 				<div class="row clearfix">
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">				  
 				 <input name="booking_person[]" type="text" placeholder="Mr." class="form-control " value="">
 				  </div>
 				</div>
-				<div class="col-xs-3 col-md-3">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				  <?php if($i == 0) { 
 					$is_phone_set = 1;
@@ -160,8 +178,20 @@ $convienice_charges = $obj_club_info->convenience_fee;
 					<input name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " > 
 				  <?php } ?>	
 				</div>
+                                </div>  
+                                      <div class="col-xs-4 col-md-4">
+				 <div class="form-group">
+				  <?php if($i == 0) { 
+					$is_phone_set = 1;
+				  ?>
+                                     <input id="booking_person_email_0" name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+                                      <?php } else { ?>
+					<input  name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+				  <?php } ?>	
+				  </div>
 				</div>
-				</div>  
+				 
+				</div>
 				  <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
 				 </td>
 			</tr>
@@ -171,22 +201,35 @@ $convienice_charges = $obj_club_info->convenience_fee;
 			<tr>
 				<td style="padding-bottom:5px">
 				  <div class="row clearfix">
-				<div class="col-xs-6 col-md-6">
+				<div class="col-xs-4 col-md-4">
 				<div class="form-group">
 				  <input name="booking_person[]" type="text" placeholder="Miss." class="form-control confirm_booking_person" >
 				  </div>
 				 </div>
-				 <div class="col-xs-3 col-md-3">
+				 <div class="col-xs-4 col-md-4">
 				 <div class="form-group">
 				  <?php if($i == 0 && $is_phone_set == 0) { 
 					$is_phone_set = 1;
 				  ?>
-				  <input id="booking_person_mobile_0" name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " >
+                                        <input id="booking_person_mobile_0" name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " >
 				 <?php } else { ?>
 					<input  name="booking_person_mobile[]" type="text" placeholder="Mobile No" class="form-control " >
 				<?php } ?> 
 				  </div>
 				</div>
+                               
+                               <div class="col-xs-4 col-md-4">
+				 <div class="form-group">
+                                     <?php if($i == 0 && $is_phone_set == 0) { 
+					$is_phone_set = 1;
+				  ?>  
+				  <input id="booking_person_email_0" name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+                                   <?php } else { ?>
+					<input name="booking_person_email[]" type="text" placeholder="Email Address" class="form-control " value="<?php //echo $arr_data['email'] ?>"> <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
+				<?php } ?> 
+				  </div>
+                               </div>
+                                       
 				</div>
 				  <!--a href="#" style="float:left;padding-left:10px">Edit</a-->
 				 </td>
@@ -332,6 +375,17 @@ $this->registerJs('$("document").ready(function(){
                 validators: {
                    notEmpty: {
                         message: "The Name is required"
+                    }
+                }
+            },
+            \'booking_person_email[]\': {
+              selector: \'#booking_person_email_0\',
+                validators: {
+                   notEmpty: {
+                        message: "The Email address is required"
+                    },
+                     emailAddress: {
+                        message: "The email address is not valid"
                     }
                 }
             },

@@ -69,9 +69,9 @@ class User extends BaseUser
         $rules = parent::rules();
         // let's add some rules for field
         // suppose, it is required and have max length with 10 symbols:
-        $rules['clubRequired'] = ['club_id', 'required'];
-         $rules['clubSafe'] = ['club_id', 'safe'];
-        $rules['clubLength']   = ['club_id', 'string', 'max' => 10];
+      //  $rules['clubRequired'] = ['club_id', 'required'];
+       //  $rules['clubSafe'] = ['club_id', 'safe'];
+      //  $rules['clubLength']   = ['club_id', 'string', 'max' => 10];
         
         $rules['userroleRequired'] = ['role_id', 'required'];
         $rules['userroleLength']   = ['role_id', 'string', 'max' => 10];
@@ -120,9 +120,18 @@ class User extends BaseUser
         return $clubArray;
         
     }
-     public function getUserRoleList()
+    
+    public function getUserRoleList()
     {
-        $roleModels = \backend\models\UserRole::find()->asArray()->all();
+        $userinfo=  \Yii::$app->user->identity; 
+        if($userinfo['role_id']==2)
+        {
+            $roleModels = \backend\models\UserRole::find()->where(["id"=>array(2,3,5)])->asArray()->all();
+        
+        }else{
+            
+            $roleModels = \backend\models\UserRole::find()->asArray()->all();
+        }
         $roleArray = ArrayHelper::map($roleModels, 'id', 'role_name');
         
         return $roleArray;
@@ -134,5 +143,39 @@ class User extends BaseUser
         $clublist = $db->createCommand('SELECT * from club where id not in (SELECT club_id from user where role_id=2)')
                     ->queryAll();
         return $clublist;
+    }
+    
+     /**
+     * This method is used to register new user account. If Module::enableConfirmation is set true, this method
+     * will generate new confirmation token and use mailer to send it to the user.
+     *
+     * @return bool
+     */
+    public function register($formbooking=0)
+    {
+        if ($this->getIsNewRecord() == false) {
+            throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
+        }
+
+        $this->confirmed_at = $this->module->enableConfirmation ? null : time();
+        $this->password     = $this->module->enableGeneratingPassword ? \dektrium\user\helpers\Password::generate(8) : $this->password;
+
+        $this->trigger(self::BEFORE_REGISTER);
+       
+       
+        if (!$this->save()) {
+            return false;
+        }
+
+        if ($this->module->enableConfirmation) {
+            /** @var Token $token */
+            $token = Yii::createObject(['class' => Token::className(), 'type' => Token::TYPE_CONFIRMATION]);
+            $token->link('user', $this);
+        }
+
+        $this->mailer->sendWelcomeMessage($this, isset($token) ? $token : null);
+        $this->trigger(self::AFTER_REGISTER);
+
+        return true;
     }
 }

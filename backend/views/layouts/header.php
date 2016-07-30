@@ -228,11 +228,33 @@ use yii\bootstrap\NavBar;
                     </ul>
                 </li>
 -->                <!-- User Account: style can be found in dropdown.less -->
+<?php
 
+$userimagepath=Yii::$app->params['userimagesPath'];
+$userimage=Yii::$app->request->baseUrl.$userimagepath;
+//echo $directoryAsset;die;
+if(!Yii::$app->user->isGuest)
+{
+$userinfo=Yii::$app->user->identity;
+$profile=  \backend\models\Profile::find()->where(['user_id'=>$userinfo['id']])->asArray()->one();
+
+$image=$profile['user_image'];
+}else{
+   $image="noimage.png"; 
+}
+?>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?php if(!Yii::$app->user->isGuest){ $userinfo=Yii::$app->user->identity; echo $userinfo['username'];}?></span>
+                        
+                        <img src="<?php echo $userimage.$image?>" class="user-image" alt=""/>
+                        <span class="hidden-xs">
+                            <?php if(!Yii::$app->user->isGuest)
+                            {
+                                
+                                echo $userinfo['username'];
+                                
+                            }?>
+                        </span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->

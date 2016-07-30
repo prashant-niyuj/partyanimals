@@ -23,7 +23,7 @@ $userinfo=  Yii::$app->user->identity;
     //'language' => 'ru',
     'dateFormat' => 'yyyy-MM-dd',
     'options'=>['readonly'=>'readonly','class'=>'form-control'],
-    'clientOptions'=>['minDate'=>0],
+    'clientOptions'=>['minDate'=>0,'maxDate'=>"+6D"],
  
     
 ])  ?>  

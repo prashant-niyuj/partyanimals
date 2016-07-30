@@ -51,8 +51,9 @@ class RegistrationForm extends BaseRegistrationForm
      *
      * @return bool
      */
-    public function register()
+    public function register($formbooking=0)
     {
+       
         if (!$this->validate()) {
             return false;
         }
@@ -61,8 +62,9 @@ class RegistrationForm extends BaseRegistrationForm
         $user = Yii::createObject(User::className());
         $user->setScenario('register');
         $this->loadAttributes($user);
-
-        if (!$user->register()) {
+       
+     
+        if (!$user->register($formbooking)) {
             return false;
         }
         $usermodel=  User::find()->where(['email'=>$this->email])->one();

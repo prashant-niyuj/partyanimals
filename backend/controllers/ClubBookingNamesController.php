@@ -37,15 +37,17 @@ class ClubBookingNamesController extends Controller {
         $models = $dataProvider->getModels();
         $bookinginfo = \backend\models\BookingCapacityAsdate::find()->select("booking_capacity,no_of_booking,is_full")->where(['club_id' => $userinfo['club_id'], 'capacity_active_date' => date('Y-m-d')])->asArray()->one();
         $noofentry = ClubBookingNames::find()->select("*")->leftJoin("club_booking", 'club_booking.id=club_booking_names.club_booking_id')->andFilterWhere(['club_id' => $userinfo['club_id']])->andFilterWhere(['is_in' => '1'])->andFilterWhere(['like', 'booking_date', date("Y-m-d")])->all();
-        //var_dump($bookinginfo);
-        //var_dump(count($noofentry));die;
+        
+      
+        $clubName=  \backend\models\Club::findOne($userinfo['club_id']);
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
                     'models' => $models,
                     'bookinginfo' => $bookinginfo,
                     'noofentry' => count($noofentry),
-                    'club_id' => $userinfo['club_id']
+                    'club_id' => $userinfo['club_id'],
+                    'clubName'=>$clubName
         ]);
     }
 
@@ -129,8 +131,10 @@ class ClubBookingNamesController extends Controller {
         $club_booking_id = \Yii::$app->request->get("club_booking_id");
         $all_entry = \Yii::$app->request->get("all_entry");
         $connection = \Yii::$app->db;
-        if (isset($id)) {
+        if (isset($id)) 
+        {
             $clubbookingnamesObj = ClubBookingNames::findOne($id);
+            if($clubbookingnamesObj)
             $param['mobile_no'] = $clubbookingnamesObj->mobile_no;
         }
         
@@ -149,11 +153,15 @@ class ClubBookingNamesController extends Controller {
         //send mail and sms to user
         $subject = "Entry Confirm";
         $clubookingObj = \backend\models\ClubBooking::findOne($club_booking_id);
-        if ($clubookingObj->booked_type == 1) {
+        if ($clubookingObj->booked_type == 1) 
+        {
             $userinfo = \backend\models\GuestUser::findOne($clubookingObj->user_id);
             $param['email'] = $userinfo->email_address;
+            
             //$param['mobile_no']=$userinfo->mobile_no;
-        } else {
+        } 
+        else 
+        {
             $userinfo = \backend\models\Profile::findOne($clubookingObj->user_id);
             $param['email'] = $userinfo->gravatar_email;
             //$param['mobile_no']=$userinfo->phone_no;
@@ -168,25 +176,43 @@ class ClubBookingNamesController extends Controller {
         $view = "entryconfirm";
         $utilsobj = new \common\models\Utils;
         $sendparam = array('mobile_no' => $param['mobile_no'], 'email' => $param['email'], 'club_name' => $param['club_name'], 'booking_date' => $param['booking_date'], 'pnr' => $param['pnr'], 'booking_type' => $param['booking_type']);
-        $mailsend = $utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam);
+        if($param['email']!="" && $param['email']!=NULL)
+        {
+            $mailsend = $utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam);
+        }
 
-
-        if (isset($param['mobile_no'])) {
+       
+        if (isset($all_entry)) {
+         
+            if($all_entry==1)
+            {
+                $clubbookingnamesArray = ClubBookingNames::find()->where(['club_booking_id' => $club_booking_id])->asArray()->all();
+                foreach ($clubbookingnamesArray as $cb) {
+                    $sendparam = array('mobile_no' => $cb['mobile_no'], 'email' => $param['email'], 'club_name' => $param['club_name'], 'booking_date' => $param['booking_date'], 'pnr' => $param['pnr'], 'booking_type' => $param['booking_type']);
+                    $view = "sms/entryconfirm";
+                    if (isset($cb['mobile_no'])) {
+                        $sendsms = $utilsobj->sendSMS($cb['mobile_no'], $param['subject'], $view, $sendparam);
+                    }
+                }
+            }else{
+                
+                 if (isset($param['mobile_no'])) 
+                 {
+                    $view = "sms/entryconfirm";
+                    $sendsms = $utilsobj->sendSMS($param['mobile_no'], $param['subject'], $view, $sendparam);
+                 }
+            }
+        }else{
+            
+             if (isset($param['mobile_no'])) {
             $view = "sms/entryconfirm";
             $sendsms = $utilsobj->sendSMS($param['mobile_no'], $param['subject'], $view, $sendparam);
         }
-        if (isset($all_entry)) {
-            $clubbookingnamesArray = ClubBookingNames::find()->where(['club_booking_id' => $club_booking_id])->asArray()->all();
-            foreach ($clubbookingnamesArray as $cb) {
-                $sendparam = array('mobile_no' => $cb['mobile_no'], 'email' => $param['email'], 'club_name' => $param['club_name'], 'booking_date' => $param['booking_date'], 'pnr' => $param['pnr'], 'booking_type' => $param['booking_type']);
-                $view = "sms/entryconfirm";
-                if (isset($cb['mobile_no'])) {
-                    $sendsms = $utilsobj->sendSMS($cb['mobile_no'], $param['subject'], $view, $sendparam);
-                }
-            }
+            
         }
 
-        die;
+        Yii::$app->session->setFlash("success","successfully confirm entry.");
+        $this->redirect(["index"]);
     }
 
     public function actionFullclub() {
@@ -214,10 +240,8 @@ class ClubBookingNamesController extends Controller {
                 $utilsobj = new \common\models\Utils;
                 $sendparam = array('ownername'=>$getclubowner->username,'club_name' => $param['club_name'], 'booking_date' => date("Y-m-d"),'gatekeepername'=>$gatekeeperinfo['username']);
                 $view='fullclub';
-                $subject="Full Club";
-                echo $getclubOwnerProfile['gravatar_email'];
-                echo "<br/>".$gatekeeperinfo['email'];
-                $mailsend = $utilsobj->sendMessage($getclubOwnerProfile['gravatar_email'], $subject, $view, $sendparam,$gatekeeperinfo['email']);
+                $subject="Full Club";           
+                $mailsend = $utilsobj->sendMessage($getclubowner->email, $subject, $view, $sendparam);
                 
                 if($mailsend)
                 {
@@ -229,9 +253,11 @@ class ClubBookingNamesController extends Controller {
         }else{
             echo "no club owner";
         }
-        die;
-
+       
         
+         Yii::$app->session->setFlash("success","Club full successfully.");
+         $this->redirect(["index"]);
+
         
     }
 

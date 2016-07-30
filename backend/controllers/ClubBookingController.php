@@ -51,10 +51,14 @@ class ClubBookingController extends Controller
     
         $searchModel = new ClubBookingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $userinfo=  Yii::$app->user->identity;
+        $clubName=  \backend\models\Club::findOne($userinfo['club_id']);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'clubName'=>$clubName
           
         ]);
     }
@@ -392,6 +396,10 @@ class ClubBookingController extends Controller
 							$phone	= $param['booking_person_mobile'][$p];
 							$modelClubBookingNames->mobile_no = $phone;
 						}
+                                                if(isset($param['booking_person_email'][$p])) {
+							$email	= $param['booking_person_email'][$p];
+							$modelClubBookingNames->email = $email;
+						}
 						
 						$modelClubBookingNames->club_booking_id = $order_id;
 						$modelClubBookingNames->booking_name = $name;
@@ -402,7 +410,7 @@ class ClubBookingController extends Controller
 					}
 					
 					$modelBookingPaymentHistory = new \backend\models\BookingPaymentHistory();
-					$raw_request =rand(1,100000);					
+					$raw_request ="processorder";//rand(1,100000);					
 					$modelBookingPaymentHistory->booking_id = $order_id;
 					
 					$modelBookingPaymentHistory->amount = $gross_total;
@@ -440,11 +448,12 @@ class ClubBookingController extends Controller
 						$arr_return['status'] = true;
 						$arr_return['pnr'] = $pnr;
 						//Site order process and dorward to payment 
-						if(Yii::$app->params['is_local']) {
+						//if(Yii::$app->params['is_local']) {
 							 $arr_return['b_id'] = $order_id;
 							 echo json_encode($arr_return);	
 							die;
-						} else {
+						/*} 
+                                                else {
 							$api = new \frontend\models\Instamojo('971542dda81fa94a308b13a07465194e', '20587eb9956553694f7159b29fd7b728');
 				            try {
 		                    	$response = $api->linkCreate(array(
@@ -463,8 +472,10 @@ class ClubBookingController extends Controller
 			                catch (Exception $e) {
 			                    print('Error: ' . $e->getMessage());
 			                }
-			        	}
-					}	
+			        	}*/
+                                        }else{
+                                            var_dump($modelBookingPaymentHistory->errors);die;
+                                        }	
 						
 				}
 				else {
@@ -486,13 +497,13 @@ class ClubBookingController extends Controller
         
     public function actionThankyou() {
         
-       // $utilsModel = new \common\models\Utils();
-       // $pnr = $utilsModel->randomString(10);
+       
         $subject="Confirm Booking";
         $session = Yii::$app->session;
         $arr_booking_data = $session['booking_data'];
         $userinfo=\Yii::$app->user->identity;
-        
+        $booking_id=  \Yii::$app->request->get('b_id');
+        //var_dump(Yii::$app->request->post());die;
         if(isset($arr_booking_data['phone']))
         {
         $param['mobile_no']=$arr_booking_data['phone'];
@@ -505,23 +516,41 @@ class ClubBookingController extends Controller
         $param['subject']=$subject;
         if(isset($arr_booking_data['email']))
         {
-        $param['email']=$arr_booking_data['email'];
+            $param['email']=$arr_booking_data['email'];
+            
         }else if(isset($userinfo['id']))
         {
-        	$param['email']=$profile->gravatar_email;
+               $useridentity=  \Yii::$app->user->identity;
+        	$param['email']=  $useridentity['email'];
         }
         $clubObj=  \backend\models\Club::findOne( $arr_booking_data['c_id']);
+        $clubbooking=  ClubBooking::find()->select('pa_pnr')->where(["id"=>$booking_id])->asArray()->one();
         $param['club_name']= $clubObj->name ;
         $param['booking_date']=$arr_booking_data['txt_datepicker'];
         $param['booking_type']=$arr_booking_data['b_type'];
-        $pnr=  Yii::$app->request->get('pnr');
-        $param['pnr']=$pnr;
+        //$pnr=  Yii::$app->request->get('pnr');
+        $param['pnr']=$clubbooking['pa_pnr'];
         $view="orderconfirm";
         $utilsobj=new \common\models\Utils;
-        $sendparam=array('mobile_no'=>$param['mobile_no'],'email'=>$param['email'],'club_name'=>$param['club_name'],'booking_date'=>$param['booking_date'],'pnr'=>$param['pnr'],'booking_type'=>$param['booking_type']);
-        $mailsend=$utilsobj->sendMessage($param['email'], $param['subject'], $view, $sendparam);
-        $view="sms/orderconfirm";
-        $sendsms=$utilsobj->sendSMS($param['mobile_no'], $param['subject'], $view, $sendparam);
+        //get booking user details
+        //echo $booking_id;die;
+        $bookingnames=  \backend\models\ClubBookingNames::find()->where(["club_booking_id"=>$booking_id])->asArray()->all();
+       // var_dump($bookingnames);die;
+        foreach($bookingnames as $bname)
+        {
+            $sendparam=array('user_name'=>$bname['booking_name'],'mobile_no'=>$bname['mobile_no'],'email'=>$bname['email'],'club_name'=>$param['club_name'],'booking_date'=>$param['booking_date'],'pnr'=>$param['pnr'],'booking_type'=>$param['booking_type']);
+            if($bname['email']!="" &&  $bname['email']!=NULL)
+            {
+                $mailsend=$utilsobj->sendMessage($bname['email'], $param['subject'], $view, $sendparam);
+            }
+            $view="sms/orderconfirm";
+            if($bname['mobile_no']!="" &&  $bname['mobile_no']!=NULL)
+            {
+                $sendsms=$utilsobj->sendSMS($bname['mobile_no'], $param['subject'], $view, $sendparam);
+            }
+        }
+        
+        
         return $this->render('thankyou',['param'=>$param]);
     }
     

@@ -256,7 +256,7 @@ function load_club()
 				format: "dd-mm-yyyy",
 				autoclose: true,
 				startDate: "month",
-				endDate: "+30d",
+				endDate: "+7d",
 				daysOfWeekDisabled:$(this).attr("close_days")
 			}).on('changeDate', function(ev){
 				//console.log(ev);

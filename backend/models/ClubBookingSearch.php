@@ -45,7 +45,7 @@ class ClubBookingSearch extends ClubBooking
      */
     public function search($params)
     {
-        $query = ClubBooking::find();
+        $query = ClubBooking::find()->orderBy("updated_at desc");
          $userinfo=  \yii::$app->user->identity;
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

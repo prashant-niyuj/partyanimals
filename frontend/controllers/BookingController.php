@@ -50,7 +50,7 @@ class BookingController extends Controller
 		}
 		//echo 'SELECT id,name,club_open_days,logo FROM club '.$where;
 		//die;
-    	$model = $connection->createCommand('SELECT id,name,club_open_days,logo FROM club '.$where);
+    	$model = $connection->createCommand('SELECT id,name,club_open_days,logo FROM club '.$where .' order by priority_range desc');
 		$arr_result = $model->queryAll();
     	
     	echo json_encode($arr_result);
@@ -288,12 +288,13 @@ class BookingController extends Controller
 
 				$utilsModel=new \common\models\Utils();
 				$pnr  = $utilsModel->randomString(10);
-				
+
 				$model->pa_pnr = $pnr;
 				if(isset($session['is_guest'])) {
 					$b_type = 1;
 					$model->booked_type = $b_type;
 					$model->user_id = $session['user_id'];
+					
 				}	
 				else {
 					$b_type = 0;
@@ -361,12 +362,14 @@ class BookingController extends Controller
 						$club_chagres = $club_chagres + $couples_rates;
 					}
 				}
-				$convienice_charges = Yii::$app->params['convenience_fee'];
+				$convienice_charges = $obj_club_info->convenience_fee;
 				$tax_charges = ($club_chagres * $obj_club_info->tax_rate) / 100;
 				$gross_total = $club_chagres + $tax_charges + $convienice_charges;
 				$model->tax_rate = $tax_charges ;
-				$commission_rate = 10;
+				
+				$commission_rate = 0;
 				$model->commission_rate = 0;
+				
 				$commission = 'Percentage';
 				$model->commission = $commission;
 			
@@ -390,12 +393,26 @@ class BookingController extends Controller
 							$modelClubBookingNames->mobile_no = $phone;
 						}
 						
+						if($p==0){
+							if($model->booked_type == 1 )
+							$user_email_query = 'select email_address as email from guest_user
+ where id ='.$model->user_id;
+ 							else
+ 								$user_email_query = 'select email as email from user
+ where id ='.$model->user_id;
+
+							$user_email_res = $connection->createCommand($user_email_query);
+							$user_email_result = $user_email_res->queryAll();
+							$email = $user_email_result[0]['email'];
+							$modelClubBookingNames->email = $email;
+						}
+
 						$modelClubBookingNames->club_booking_id = $order_id;
 						$modelClubBookingNames->booking_name = $name;
 						
 						$modelClubBookingNames->created_at = date("Y-m-d H:i:s");
 						if($modelClubBookingNames->save())
-							$p++;
+						$p++;
 					}
 					
 					$modelBookingPaymentHistory = new \backend\models\BookingPaymentHistory();

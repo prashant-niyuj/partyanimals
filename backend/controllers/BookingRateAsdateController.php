@@ -35,10 +35,14 @@ class BookingRateAsdateController extends Controller
     {
         $searchModel = new BookingRateAsdateSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $userinfo=  Yii::$app->user->identity;
+        $clubName=  \backend\models\Club::findOne($userinfo['club_id']);
+       
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'clubName'=>$clubName
         ]);
     }
 

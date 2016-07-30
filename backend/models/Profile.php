@@ -72,12 +72,14 @@ class Profile extends BaseProfile
     {
         
        $request=Yii::$app->request->post('register-form');
+       $this->setAttribute('user_image', $this->user_image);
        if(!isset($request))
        {
            $request=Yii::$app->request->post('User');
            if(isset($request))
            {
-            $this->setAttribute('phone_no',$request['phone_no']);
+               if(isset($request['phone_no']))
+                    $this->setAttribute('phone_no',$request['phone_no']);
            }
        }else
        {

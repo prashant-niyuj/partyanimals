@@ -9,6 +9,11 @@ use yii\jui\DatePicker;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Booking Rate Asdates';
+$userinfo=Yii::$app->user->identity;
+if($userinfo['role_id']==2)
+{
+    $this->title = $clubName->name.' - Set Booking Rate For Date';
+}
 $this->params['breadcrumbs'][] = $this->title;
 $userinfo=  Yii::$app->user->identity;
 ?>
@@ -34,7 +39,15 @@ $userinfo=  Yii::$app->user->identity;
             'couple_rate',
              [
             'attribute' => 'rate_date',
-              'format' =>  ['date', 'php:Y-m-d'],
+             'format' =>  ['date', 'php:Y-m-d'],
+             'filter' => DatePicker::widget([
+              'model'      => $searchModel,
+                'attribute'  =>   'rate_date',
+                'dateFormat' => 'php:Y-m-d',
+                'options' => [
+                    'class' => 'form-control'
+                ]
+            ]),
             ],
            
             // 'create_at',
@@ -56,9 +69,17 @@ $userinfo=  Yii::$app->user->identity;
             'girl_rate',
             'boy_rate',
             'couple_rate',
-             [
+              [
             'attribute' => 'rate_date',
-            'format' =>  ['date', 'php:Y-m-d'],
+             'format' =>  ['date', 'php:Y-m-d'],
+             'filter' => DatePicker::widget([
+              'model'      => $searchModel,
+                'attribute'  =>   'rate_date',
+                'dateFormat' => 'php:Y-m-d',
+                'options' => [
+                    'class' => 'form-control'
+                ]
+            ]),
             ],
            
             // 'create_at',

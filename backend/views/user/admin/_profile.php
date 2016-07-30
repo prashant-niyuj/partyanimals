@@ -18,6 +18,9 @@ use yii\helpers\Html;
  */
 
 
+$userimagepath=Yii::$app->params['userimagesPath'];
+$userimage=Yii::$app->request->baseUrl.$userimagepath;
+//var_dump($profile->user_image);die;
 ?>
 
 <?php $this->beginContent('@dektrium/user/views/admin/update.php', ['user' => $user]) ?>
@@ -26,6 +29,7 @@ use yii\helpers\Html;
         'layout' => 'horizontal',
         'enableAjaxValidation'   => true,
         'enableClientValidation' => false,
+         'options' => ['enctype' => 'multipart/form-data'],
         'fieldConfig' => [
             'horizontalCssClasses' => [
                 'wrapper' => 'col-sm-9',
@@ -38,6 +42,13 @@ use yii\helpers\Html;
     <?= $form->field($profile, 'website') ?>
 
 
+<?= $form->field($profile, 'user_image')->fileInput() ?>
+<?php if(isset($profile->user_image) && !empty($profile->user_image)) 
+    {echo '<center><img src= "'.$userimage.$profile->user_image.'" height="50"/></center>'; ?>
+<?php }else{ ?>
+   <center> <img src="<?= $userimage?>noimage.png" class="user-image" height="50" alt="User Image"/> </center>  
+           <?php }?>    
+   <br>
     <div class="form-group">
         <div class="col-lg-offset-3 col-lg-9">
             <?= Html::submitButton(Yii::t('user', 'Update'), ['class' => 'btn btn-block btn-success']) ?>
